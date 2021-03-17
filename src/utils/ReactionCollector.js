@@ -22,7 +22,7 @@ class ReactionCollector extends CollectorBase {
 
         this.messageReactionAdd = []
         this.messageReactionRemove = []
-        console.log(this.options.messageID )
+        
         
         this.client.on('messageReactionAdd',  (message, emoji, reactor) => {
    
@@ -49,7 +49,7 @@ class ReactionCollector extends CollectorBase {
 
               
             if (this.limit >= this.options.limit) {
-                console.log("paro???")
+            
                 this.stopAll()
                 return;
             } else {
@@ -100,7 +100,7 @@ class ReactionCollector extends CollectorBase {
 
               
             if (this.limit >= this.options.limit) {
-                console.log("paro???")
+        
                 this.stopAll()
                 return;
             } else {
