@@ -1,0 +1,33 @@
+{
+  "name": "eris-collector",
+  "version": "1.0.0",
+  "description": "Universal collection for Eris (Library for Discord). Cool and fast collector with options, ease.",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "eris": "^0.14.0",
+    "events": "^3.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NavyCake/collector-universal.git"
+  },
+  "keywords": [
+    "eris",
+    "collector-eris",
+    "collector",
+    "discord-library"
+  ],
+  "author": "NavyCake",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/NavyCake/collector-universal/issues"
+  },
+  "homepage": "https://github.com/NavyCake/collector-universal#readme"
+}
