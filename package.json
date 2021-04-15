@@ -1,5 +1,5 @@
 {
-  "name": "eris-collector",
+  "name": "collector-universal",
   "version": "1.0.0",
   "description": "Universal collection for Eris (Library for Discord). Cool and fast collector with options, ease.",
   "main": "index.js",
