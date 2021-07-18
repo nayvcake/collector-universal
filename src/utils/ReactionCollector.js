@@ -1,7 +1,9 @@
 const CollectorBase = require("./CollectorBase")
 
 
-
+/**
+ * Reaction Collector class
+ */
 class ReactionCollector extends CollectorBase {
     constructor(client, messageC, optionsClass) {
         super()
@@ -26,11 +28,11 @@ class ReactionCollector extends CollectorBase {
         
         this.client.on('messageReactionAdd',  (message, emoji, reactor) => {
    
-            if (this.options.messageID === message.id) {
-                
-            } else { return }
+            if (this.options.messageID !== message.id) {
+                return
+            }
        
-            if (this.finished === true) {
+            if (this.finished) {
                 return;
             }
        
@@ -58,9 +60,6 @@ class ReactionCollector extends CollectorBase {
           
         
             if (this.userIF === true) {
-              
-            } else {
-               
                 if (reactor.user.id === this.options.userID) {
                     this.messageReactionAdd.push(message, emoji, reactor)
                     this.emit('add', message, emoji, reactor) 
@@ -69,7 +68,7 @@ class ReactionCollector extends CollectorBase {
                     this.emit('add', message, emoji, reactor) 
                 }
             
-                return;
+                return; 
             }
         })
 
@@ -77,11 +76,11 @@ class ReactionCollector extends CollectorBase {
         
         this.client.on('messageReactionRemove',  (message, emoji, reactor) => {
 
-            if (this.options.messageID === message.id) {
-                
-            } else { return }
+            if (this.options.messageID !== message.id) {
+                return   
+            }
        
-            if (this.finished === true) {
+            if (this.finished) {
                 return;
             }
        
@@ -100,7 +99,6 @@ class ReactionCollector extends CollectorBase {
 
               
             if (this.limit >= this.options.limit) {
-        
                 this.stopAll()
                 return;
             } else {
@@ -108,10 +106,7 @@ class ReactionCollector extends CollectorBase {
             }
           
         
-            if (this.userIF === true) {
-              
-            } else {
-               
+            if (!this.userIF) {
                 if (reactor.user.id === this.options.userID) {
                     this.messageReactionRemove.push(message, emoji, reactor)
                     this.emit('remove', message, emoji, reactor) 
@@ -126,10 +121,10 @@ class ReactionCollector extends CollectorBase {
     }
 
     setTime(time = 0) {
-        if (typeof time === 'number') {} 
-            else {
-                return TypeError("You need to enter a number for the collector to finish in the future.")
-            }
+        if (typeof time !== 'number') {
+            return TypeError("You need to enter a number for the collector to finish in the future.")
+        } 
+
         this.time = time 
         this.createTime(this.time)
         return this;
