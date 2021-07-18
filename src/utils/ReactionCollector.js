@@ -99,7 +99,6 @@ class ReactionCollector extends CollectorBase {
 
               
             if (this.limit >= this.options.limit) {
-        
                 this.stopAll()
                 return;
             } else {
