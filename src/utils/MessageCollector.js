@@ -1,10 +1,7 @@
 const CollectorBase = require("./CollectorBase");
 
-
-
-
 /**
- * 
+ * MessageCollector class
  */
 class MessageCollector extends CollectorBase {
 
@@ -31,7 +28,7 @@ class MessageCollector extends CollectorBase {
 
         this.client.on('messageCreate',  (message) => {
         
-            if (this.finished === true) {
+            if (this.finished) {
                 return;
             }
 
@@ -55,9 +52,7 @@ class MessageCollector extends CollectorBase {
                 this.limit++
             }
         
-            if (this.userIF === true) {
-              
-            } else {
+            if (!this.userIF) {
                 if (message.author.id === this.options.userID) {
                     this.messageCreate.push(message)
                     this.emit('captureMessage', message) 
@@ -66,14 +61,14 @@ class MessageCollector extends CollectorBase {
                     this.emit('captureMessage', message) 
                 }
             
-                return;
+                return;  
             }
         })
 
         
 
         this.client.on('messageUpdate',  (message) => {
-            if (this.finished === true) {
+            if (this.finished) {
                 return;
             }
 
@@ -97,9 +92,7 @@ class MessageCollector extends CollectorBase {
                 this.limit++
             }
 
-            if (this.userIF === true) {
-            
-            } else {
+            if (!this.userIF) {
                 if (message.author.id === this.options.userID) { 
                     this.messageUpdate.push(message)
                     this.emit('captureUpdate', message)
@@ -114,7 +107,7 @@ class MessageCollector extends CollectorBase {
 
         this.client.on('messageDelete',  (message) => {
           
-            if (this.finished === true) {
+            if (this.finished) {
                 return;
             }
 
@@ -138,9 +131,7 @@ class MessageCollector extends CollectorBase {
                 this.limit++
             }
 
-            if (this.userIF === true) {
-               
-            } else {
+            if (!this.userIF) {
                 if (message.author.id === this.options.userID) { 
                     this.messageDelete.push(message)
                     this.emit('captureDelete', message)
@@ -148,7 +139,7 @@ class MessageCollector extends CollectorBase {
                     this.messageDelete.push(message)
                     this.emit('captureDelete', message)
                 }
-                return;
+                return;  
             }
 
         })
@@ -156,10 +147,10 @@ class MessageCollector extends CollectorBase {
     }
 
     setTime(time = 0) {
-        if (typeof time === 'number') {} 
-            else {
-                return TypeError("You need to enter a number for the collector to finish in the future.")
-            }
+        if (typeof time !== 'number') {
+            return TypeError("You need to enter a number for the collector to finish in the future.")
+
+        } 
         this.time = time 
         this.createTime(this.time)
         return this;
